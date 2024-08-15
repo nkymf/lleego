@@ -1,0 +1,24 @@
+services:
+    # Default configuration for services
+    _defaults:
+        public: true
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # Binding of interfaces with concrete implementations
+    App\Domain\Connectors\HttpClientInterface:
+        class: App\Interface\Connectors\GuzzleConnector
+
+    # Commands
+    App\Interface\Commands\TravelCommand:
+        tags: ['console.command']
+
+    App\Application\UseCases\RequestTravelData\RequestTravelDataCommand:
+        autowire: false

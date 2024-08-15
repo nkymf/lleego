@@ -1,0 +1,4 @@
+travel_request:
+    path: /api/avail
+    controller: App\Interface\Controllers\TravelController::trigger
+    methods: GET
